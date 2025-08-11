@@ -94,8 +94,6 @@ public class PlayerController : MonoBehaviour
         camCurXRot += mouseDelta.y * lookSensitivity;
         camCurXRot = Mathf.Clamp(camCurXRot, minXLook, maxXLook);
         cameraContainer.localEulerAngles = new Vector3(-camCurXRot, 0, 0);
-
-        transform.eulerAngles += new Vector3(0, mouseDelta.x * lookSensitivity, 0);
     }
 
     private void RotateToCamera()
