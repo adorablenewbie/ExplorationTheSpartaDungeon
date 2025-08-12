@@ -98,7 +98,7 @@ public class PlayerController : MonoBehaviour
 
     private void RotateToCamera()
     {
-        // 전진 입력일 때만 회전 적용
+        // 전진 입력일 때만 회전 적용, 나중에 조금 손 보자
         if (curMovementInput.sqrMagnitude > 0.01f && curMovementInput.y > 0)
         {
             Vector3 camForward = cameraTransform.forward;
