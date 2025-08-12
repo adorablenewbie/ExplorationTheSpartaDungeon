@@ -9,6 +9,7 @@ public class Condition : MonoBehaviour
     public float maxValue;
     public float startValue;
     public float passiveValue;
+    public bool isConditionInvincible;
     public Image uiBar;
 
     private void Start()
@@ -28,11 +29,27 @@ public class Condition : MonoBehaviour
 
     public void Subtract(float amount)
     {
+        if (isConditionInvincible) return;
         curValue = Mathf.Max(curValue - amount, 0.0f);
     }
 
     public float GetPercentage()
     {
         return curValue / maxValue;
+    }
+    public void SetConditionInvincible()
+    {
+
+        isConditionInvincible = true;
+    }
+    public void EndConditionInvincible()
+    {
+        isConditionInvincible = false;
+    }
+    public IEnumerator SetConditionInvincibleCoroutine(float duration)
+    {
+        SetConditionInvincible();
+        yield return new WaitForSeconds(duration);
+        EndConditionInvincible();
     }
 }

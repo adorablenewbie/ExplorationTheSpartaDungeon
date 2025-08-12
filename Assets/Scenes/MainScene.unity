@@ -433,7 +433,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 10614986}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2064468661}
+        m_TargetAssemblyTypeName: UIInventory, Assembly-CSharp
+        m_MethodName: OnDropButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &10614986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2463,6 +2475,7 @@ MonoBehaviour:
   maxValue: 200
   startValue: 200
   passiveValue: 10
+  isConditionInvincible: 0
   uiBar: {fileID: 1502752745}
 --- !u!114 &193931479
 MonoBehaviour:
@@ -6058,6 +6071,7 @@ Transform:
   m_Children:
   - {fileID: 1653977203}
   - {fileID: 1513616053}
+  - {fileID: 1441071123}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &558820999
@@ -6096,6 +6110,7 @@ MonoBehaviour:
   lookSensitivity: 0.2
   cameraTransform: {fileID: 2018271277}
   canLook: 1
+  onDoubleJump: 0
 --- !u!114 &558821001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6110,6 +6125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 558821000}
   condition: {fileID: 0}
+  uiBuffManager: {fileID: 1957694606}
   itemData: {fileID: 0}
   equip: {fileID: 558821009}
   dropPosition: {fileID: 558820998}
@@ -6377,7 +6393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curEquip: {fileID: 0}
-  equipParent: {fileID: 558820998}
+  equipParent: {fileID: 1441071123}
 --- !u!1 &563745137
 GameObject:
   m_ObjectHideFlags: 0
@@ -7110,8 +7126,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 310, y: -40}
-  m_SizeDelta: {x: 100, y: 40}
+  m_AnchoredPosition: {x: 310, y: -145}
+  m_SizeDelta: {x: 100, y: 240}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &666203523
 MonoBehaviour:
@@ -7168,7 +7184,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -8455,7 +8471,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 809450319}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2064468661}
+        m_TargetAssemblyTypeName: UIInventory, Assembly-CSharp
+        m_MethodName: OnUnEquipButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &809450319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12094,7 +12122,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1194969485}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2064468661}
+        m_TargetAssemblyTypeName: UIInventory, Assembly-CSharp
+        m_MethodName: OnUseButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1194969485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13668,7 +13708,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1405550197}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2064468661}
+        m_TargetAssemblyTypeName: UIInventory, Assembly-CSharp
+        m_MethodName: OnEquipButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1405550197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14236,6 +14288,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71bb44319f15e0741846c4fad009f013, type: 3}
   m_PrefabInstance: {fileID: 1440006038}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1441071122
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1441071123}
+  m_Layer: 0
+  m_Name: Equip
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1441071123
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441071122}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 558820998}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1445238292
 GameObject:
   m_ObjectHideFlags: 0
@@ -14474,8 +14557,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 185, y: -40}
-  m_SizeDelta: {x: 125, y: 40}
+  m_AnchoredPosition: {x: 185, y: -145}
+  m_SizeDelta: {x: 125, y: 240}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1469680010
 MonoBehaviour:
@@ -14532,7 +14615,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -15987,6 +16070,7 @@ RectTransform:
   - {fileID: 909751826}
   - {fileID: 1289982919}
   - {fileID: 1273191015}
+  - {fileID: 1957694604}
   m_Father: {fileID: 133913232}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -18655,7 +18739,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1937011462}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.119637005, y: -1e-45, z: -0, w: 0.99281776}
+  m_LocalRotation: {x: 0.11963699, y: 1e-45, z: -0, w: 0.99281776}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -18919,6 +19003,7 @@ MonoBehaviour:
   maxValue: 300
   startValue: 300
   passiveValue: 20
+  isConditionInvincible: 0
   uiBar: {fileID: 1014116159}
 --- !u!114 &1951908422
 MonoBehaviour:
@@ -18958,6 +19043,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1951908419}
   m_CullTransparentMesh: 1
+--- !u!1 &1957694603
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1957694604}
+  - component: {fileID: 1957694605}
+  - component: {fileID: 1957694606}
+  m_Layer: 5
+  m_Name: UIBuffManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1957694604
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957694603}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1615230608}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 20}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0, y: 0}
+--- !u!114 &1957694605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957694603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 20
+    m_Right: 20
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
+--- !u!114 &1957694606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957694603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bb818648d1f68347ae709a1435c5fd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1962701788
 GameObject:
   m_ObjectHideFlags: 0
@@ -19803,6 +19963,7 @@ MonoBehaviour:
   maxValue: 100
   startValue: 100
   passiveValue: 1
+  isConditionInvincible: 0
   uiBar: {fileID: 1037879453}
 --- !u!114 &2058513918
 MonoBehaviour:
@@ -19981,6 +20142,7 @@ MonoBehaviour:
   equipButton: {fileID: 1405550194}
   unEquipButton: {fileID: 809450316}
   dropButton: {fileID: 10614983}
+  buffManager: {fileID: 1957694606}
 --- !u!114 &2064468662
 MonoBehaviour:
   m_ObjectHideFlags: 0

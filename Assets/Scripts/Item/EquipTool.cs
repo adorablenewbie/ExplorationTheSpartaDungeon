@@ -1,3 +1,4 @@
+using UnityEditor.UIElements;
 using UnityEngine;
 
 public class EquipTool : Equip
@@ -23,10 +24,19 @@ public class EquipTool : Equip
         animator = GetComponent<Animator>();
     }
 
+    [Header("Buff")]
+    public ItemData itemData;
+
+    private ItemBuff[] buffs;
+    private UIBuffManager uiBuffManager;
+
     void Start()
     {
         animator = GetComponent<Animator>();
         camera = Camera.main;
+        uiBuffManager = PlayerManager.Instance.Player.uiBuffManager;
+        buffs = itemData.itemBuff;
+        OnBuff();
     }
     public override void OnAttackInput()
     {
@@ -59,6 +69,27 @@ public class EquipTool : Equip
             if (doesGatherResources && hit.collider.TryGetComponent(out Resource resource))
             {
                 resource.Gather(hit.point, hit.normal);
+            }
+        }
+    }
+
+    public void OnBuff()
+    {
+        for(int i = 0; i < buffs.Length; i++)
+        {
+            for (int j = 0; j < buffs[i].buffData.effects.Length; j++)
+            {
+                if (buffs[i].buffData.effects[j] != null)
+                {
+                    if (buffs[i].isPermanent)
+                    {
+                        uiBuffManager.AddPermanentBuff(buffs[i].buffData);
+                    }
+                    else
+                    {
+                        uiBuffManager.AddTemporaryBuff(buffs[i].buffData, buffs[i].duration);
+                    }
+                }
             }
         }
     }

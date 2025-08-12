@@ -28,6 +28,9 @@ public class UIInventory : MonoBehaviour
     private PlayerController controller;
     private PlayerCondition condition;
 
+    public UIBuffManager buffManager;
+
+
     void Start()
     {
         controller = PlayerManager.Instance.Player.controller;
@@ -83,7 +86,6 @@ public class UIInventory : MonoBehaviour
         return inventoryWindow.activeInHierarchy;
     }
 
-    // PlayerController 먼저 수정
 
     public void AddItem()
     {
@@ -181,6 +183,16 @@ public class UIInventory : MonoBehaviour
             selectedItemStatName.text += selectedItem.item.consumables[i].type.ToString() + "\n";
             selectedItemStatValue.text += selectedItem.item.consumables[i].value.ToString() + "\n";
         }
+        for (int i = 0; i < selectedItem.item.itemBuff.Length; i++)
+        {
+            for (int j = 0; j < selectedItem.item.itemBuff[i].buffData.effects.Length; j++)
+            {
+                selectedItemStatName.text += selectedItem.item.itemBuff[i].buffData.effects[j].type.ToString() + "\n";
+                if(selectedItem.item.itemBuff[i].buffData.effects[j].value != 0)  selectedItemStatValue.text += selectedItem.item.itemBuff[i].buffData.effects[j].value.ToString() + "\n";
+                if(selectedItem.item.itemBuff[i].buffData.effects[j].isOn) selectedItemStatValue.text += selectedItem.item.itemBuff[i].buffData.effects[j].isOn.ToString() + "\n";
+            }
+            
+        }
 
         useButton.SetActive(selectedItem.item.type == ItemType.Consumable);
         equipButton.SetActive(selectedItem.item.type == ItemType.Equipable && !slots[index].equipped);
@@ -202,8 +214,23 @@ public class UIInventory : MonoBehaviour
                         condition.Eat(selectedItem.item.consumables[i].value); break;
                 }
             }
+            if (selectedItem.item.itemBuff.Length > 0)
+            {
+                for (int i = 0; i < selectedItem.item.itemBuff.Length; i++)
+                {
+                    if (selectedItem.item.itemBuff[i].isPermanent)
+                    {
+                        buffManager.AddPermanentBuff(selectedItem.item.itemBuff[i].buffData);
+                    }
+                    else
+                    {
+                        buffManager.AddTemporaryBuff(selectedItem.item.itemBuff[i].buffData, selectedItem.item.itemBuff[i].duration);
+                    }
+                }
+            }
             RemoveSelctedItem();
         }
+       
     }
 
     public void OnDropButton()
@@ -263,5 +290,4 @@ public class UIInventory : MonoBehaviour
     {
         UnEquip(selectedItemIndex);
     }
-
 }

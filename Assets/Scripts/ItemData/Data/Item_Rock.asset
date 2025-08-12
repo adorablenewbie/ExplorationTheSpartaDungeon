@@ -25,3 +25,13 @@ MonoBehaviour:
   - type: 0
     value: 100
   equipPrefab: {fileID: 0}
+  itemBuff:
+  - buffData: {fileID: 11400000, guid: 79be71e964ef27c499142c69076a09dc, type: 2}
+    isPermanent: 0
+    duration: 40
+  - buffData: {fileID: 11400000, guid: 8814d3bbda3cc3443be0494bac29021f, type: 2}
+    isPermanent: 0
+    duration: 30
+  - buffData: {fileID: 11400000, guid: 9ac0d0f73ef855f448c72fad84fc3a2c, type: 2}
+    isPermanent: 0
+    duration: 20

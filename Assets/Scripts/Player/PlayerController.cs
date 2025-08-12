@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
@@ -28,6 +29,8 @@ public class PlayerController : MonoBehaviour
     public Action inventory;
 
     private Rigidbody rigidbody;
+    private bool canDoubleJump = false;
+    public bool onDoubleJump = false;
 
 
 
@@ -74,10 +77,17 @@ public class PlayerController : MonoBehaviour
 
     public void OnJumpInput(InputAction.CallbackContext context)
     {
+        if (context.phase == InputActionPhase.Started && canDoubleJump && onDoubleJump)
+        {
+            canDoubleJump = false; // 더블 점프 사용 후 불가능 상태로 설정
+            rigidbody.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
+        }
         if (context.phase == InputActionPhase.Started && IsGrounded())
         {
             rigidbody.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
+            canDoubleJump = true; // 더블 점프 가능 상태로 설정
         }
+        
     }
 
     private void Move()
@@ -151,5 +161,33 @@ public class PlayerController : MonoBehaviour
         bool toggle = Cursor.lockState == CursorLockMode.Locked;
         Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
         canLook = !toggle;
+    }
+
+    public void SpeedUp(float value)
+    {
+        moveSpeed += value;
+    }
+    public void JumpUp(float value)
+    {
+        jumpPower += value;
+    }
+
+    public IEnumerator SpeedUpCoroutine(float value, float duration)
+    {
+        SpeedUp(value);
+        yield return new WaitForSeconds(duration);
+        moveSpeed -= value;
+    }
+    public IEnumerator JumpUpCoroutine(float value, float duration)
+    {
+        JumpUp(value);
+        yield return new WaitForSeconds(duration);
+        jumpPower -= value;
+    }
+    public IEnumerator DoubleJumpCoroutine(float duration)
+    {
+        onDoubleJump = true;
+        yield return new WaitForSeconds(duration);
+        onDoubleJump = false;
     }
 }
