@@ -93,4 +93,30 @@ public class EquipTool : Equip
             }
         }
     }
+    private void OnDestroy()
+    {
+        RemoveBuffs();
+    }
+    public void RemoveBuffs()
+    {
+        if (uiBuffManager == null || buffs == null) return;
+
+        for (int i = 0; i < buffs.Length; i++)
+        {
+            for (int j = 0; j < buffs[i].buffData.effects.Length; j++)
+            {
+                if (buffs[i].buffData.effects[j] != null)
+                {
+                    if (buffs[i].isPermanent)
+                    {
+                        uiBuffManager.RemovePermanentBuff(buffs[i].buffData);
+                    }
+                    else
+                    {
+                        uiBuffManager.RemoveTemporaryBuff(buffs[i].buffData);
+                    }
+                }
+            }
+        }
+    }
 }
